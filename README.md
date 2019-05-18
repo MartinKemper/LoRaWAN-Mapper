@@ -31,6 +31,8 @@ Once you have Node-Red up and running ( http://127.0.0.1:1880 ) you have to inst
 -	node-red-node-geohash
 -	node-red-contrib-influxdb (should be installed from scratch)
 The flow in Node -Red looks quite simple.
+
+![pic2](https://user-images.githubusercontent.com/15077795/57966048-1c8dab80-794d-11e9-861c-3d5a425edc99.jpg)
  
 The MQTT node listens on a topic from the MQTT Broker of TheThingsNetwork (your application on TTN). The JSON Node just brings the result in a pretty JSON format. The Grafana Wordmap panel that we will use later needs a geohash. This is the job of the geohash node. With the input of latitude and longitude it generates a geohash. The next functions parse in the geohash in the payload and the influxdb node writes that into an influxdb database.
 
@@ -38,7 +40,12 @@ The MQTT node listens on a topic from the MQTT Broker of TheThingsNetwork (your 
 
 Fill in as MQTT Server eu.thethings.network on Port 1883. The username is the name of your TTN application, the password is the access key of your application.
  
- 
+
+![pic3](https://user-images.githubusercontent.com/15077795/57966070-64acce00-794d-11e9-8522-c25b630a3405.jpg)
+
+![pic4](https://user-images.githubusercontent.com/15077795/57966071-6aa2af00-794d-11e9-973f-6a9163c46719.jpg)
+
+![pic5](https://user-images.githubusercontent.com/15077795/57966072-70989000-794d-11e9-989b-99e2bdf9c448.jpg) 
  
 For mapping we use an Adeunis Field Test device. The following payload parsing is based on that device. If you would like to use the Adeunis and do not have payload decoder you will find a tutorial here: 
 
@@ -140,8 +147,12 @@ Finally, the data will be written into the InfluxDB database.
 “ttndata” is this example is the name of the influx database (you have to create the database in the next step before you can write to the database)
 “loradbmapper” is the name of the measurement
 Username and password are from the influxdb what you have to setup in the next step.
- 
- 
+
+
+![pic6](https://user-images.githubusercontent.com/15077795/57966095-e270d980-794d-11e9-9473-6769ebcbafd3.jpg)
+
+![pic7](https://user-images.githubusercontent.com/15077795/57966096-e7ce2400-794d-11e9-8867-681c7a21ff7f.jpg)
+
 Now you are done with Node-Red. Before the flow can work you have to setup the InfluxDB
 
 
@@ -153,42 +164,68 @@ See:
 https://docs.influxdata.com/influxdb/v1.7/introduction/getting-started/
 
 Open a command shell (CMD). 
+
 Goto your InfluxDB directory. 
+
 Start Influx Demon ( influxd )
+
 Open a second shell
+
 Run influx
- 
+
+
+![pic8](https://user-images.githubusercontent.com/15077795/57966120-4b585180-794e-11e9-9851-f3597d04f302.jpg)
+
 Create a database:
 
 CREATE DATABASE ttndata
+
 Create a user with rights:
+
 CREATE USER admin WITH PASSWORD '<password>' WITH ALL PRIVILEGES
 
 Once you have written first data into your database you can check them with the command line interface.
+
+![pic9](https://user-images.githubusercontent.com/15077795/57966132-7cd11d00-794e-11e9-8880-10e44a97d2c7.jpg)
+
  
 There you are. Time to get the dashboard up and running.
 
 # Grafana:
 
 Start Grafana Server:
- 
+
+![pic10](https://user-images.githubusercontent.com/15077795/57966137-98d4be80-794e-11e9-8a58-eeafe5742a7b.jpg)
+
+
 Open the Grafana URL:
+
 http://127.0.0.1:8080
+
 Under Configuration – Add the InfluxDB as a datasource
- 
+
+![pic11](https://user-images.githubusercontent.com/15077795/57966144-b86be700-794e-11e9-93f5-376ac1a571c1.jpg)
 
 Install the Worldmap Panel:
 https://grafana.com/plugins/grafana-worldmap-panel/installation
 
 Now you can Create the Dashboard with the following query and configuration:
  
- 
+
+![pic12](https://user-images.githubusercontent.com/15077795/57966161-dd605a00-794e-11e9-9a70-f19a3d92b401.jpg)
+
+![pic13](https://user-images.githubusercontent.com/15077795/57966164-e3563b00-794e-11e9-98f4-c8dda1923ab2.jpg)
+
+![pic14](https://user-images.githubusercontent.com/15077795/57966170-efda9380-794e-11e9-98b1-545ba9b65c42.jpg) 
 
  
 You can add further panel for you needs:
 
 Example:
  
+
+![pic15](https://user-images.githubusercontent.com/15077795/57966176-07b21780-794f-11e9-8b37-f23570aa36ac.jpg)
+
 
 Follow us on twitter:
 
