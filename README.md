@@ -63,7 +63,7 @@ Now we have to parse the payload of the Adeunis device with the fields we want t
 
 Here is the code snipped for this function. If you use a different device or a different payload decoder in your application, you have to adjust this:
 
-
+```
 var thing = {
 
     name: msg.payload.dev_id, 
@@ -88,6 +88,7 @@ msg.payload = thing;
 
 return msg;
 
+```
 
 ## Geohash-Node:
 
@@ -106,7 +107,8 @@ This is done in node-red node “Parse In Geohash” formatting the message payl
 If msg.payload is an object containing multiple properties, the fields will be written to the measurement. If msg.payload is an array containing two objects, the first object will be written as the set of named fields, the second is the set of named tags.
 
 Here is the code snipped for this function:
-'''
+
+```
 var thing = [{
 
     lat:msg.payload.lat, 
@@ -137,7 +139,8 @@ var thing = [{
 
 msg.payload = thing;
 return msg;
-'''
+
+```
 
 ## InfluxDB Node:
 
