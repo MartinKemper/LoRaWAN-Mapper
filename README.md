@@ -106,7 +106,7 @@ This is done in node-red node “Parse In Geohash” formatting the message payl
 If msg.payload is an object containing multiple properties, the fields will be written to the measurement. If msg.payload is an array containing two objects, the first object will be written as the set of named fields, the second is the set of named tags.
 
 Here is the code snipped for this function:
-
+'''
 var thing = [{
 
     lat:msg.payload.lat, 
@@ -122,8 +122,7 @@ var thing = [{
     RSSI_DL:msg.payload.RSSI_DL,
     
     SNR_DL:msg.payload.SNR_DL,
-    
-    
+        
 },
 
 {
@@ -138,7 +137,7 @@ var thing = [{
 
 msg.payload = thing;
 return msg;
-
+'''
 
 ## InfluxDB Node:
 
@@ -182,7 +181,7 @@ CREATE DATABASE ttndata
 
 Create a user with rights:
 
-CREATE USER admin WITH PASSWORD '<password>' WITH ALL PRIVILEGES
+CREATE USER admin WITH PASSWORD yourpassword WITH ALL PRIVILEGES
 
 Once you have written first data into your database you can check them with the command line interface.
 
